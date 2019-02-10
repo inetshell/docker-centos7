@@ -20,10 +20,10 @@ sysctl -p /etc/sysctl.d/*
 
 ###########################################################
 # Set hostname
-echo "HOSTNAME=$${NAME}" >> /etc/sysconfig/network
+echo "HOSTNAME=${NAME}" >> /etc/sysconfig/network
 /sbin/ifconfig eth0 | awk '/inet/ { print $2,"\t__HOSTNAME__" }' >> /etc/hosts
-sed "s/__HOSTNAME__/$${NAME}/g" -i /etc/hosts
-hostnamectl set-hostname $${NAME}.$${DOMAIN}
+sed "s/__HOSTNAME__/${NAME}/g" -i /etc/hosts
+hostnamectl set-hostname ${NAME}.${DOMAIN}
 
 ###########################################################
 # Configure ulimits
@@ -33,7 +33,7 @@ echo "*                hard    nofile          32768" >> /etc/security/limits.d/
 ###########################################################
 # Add SSH Keys
 mkdir /root/.ssh
-echo "$${SSH}" >> /root/.ssh/authorized_keys
+echo "${SSH}" >> /root/.ssh/authorized_keys
 
 # Configure SSH service for key access only
 sudo sed -e "s/^PermitRootLogin.*/PermitRootLogin without-password/g" -i /etc/ssh/sshd_config
