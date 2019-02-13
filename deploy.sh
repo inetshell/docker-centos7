@@ -32,8 +32,12 @@ echo "*                soft    nofile          32768" >> /etc/security/limits.d/
 echo "*                hard    nofile          32768" >> /etc/security/limits.d/20-nofile.conf
 
 ###########################################################
-# Add SSH Keys
-mkdir /root/.ssh
+# Allows root user to to login and adds SSH Keys
+if [[ -f /root/.ssh/authorized_keys ]]; then
+  sed -i "/Please login as the user/d" /root/.ssh/authorized_keys
+else
+  mkdir /root/.ssh
+fi
 echo "${SSH}" >> /root/.ssh/authorized_keys
 
 # Configure SSH service for key access only
