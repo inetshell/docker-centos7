@@ -2,6 +2,7 @@
 
 if [[ -z ${SSH} ]] || [[ -z ${NAME} ]] || [[ -z ${DOMAIN} ]]; then
   echo "ERROR: SSH, NAME and DOMAIN variables must be defined"
+  exit 1
 fi
 
 ###########################################################
