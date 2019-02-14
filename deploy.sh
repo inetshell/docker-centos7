@@ -95,5 +95,9 @@ sudo systemctl start docker
 sudo docker version
 
 ###########################################################
+# Disable cloud-init
+sudo touch /etc/cloud/cloud-init.disabled
+
+###########################################################
 # Finish
 echo "Finish: $(date)" >> deploy
