@@ -80,6 +80,10 @@ sudo yum install -y ntp
 sudo systemctl enable ntpd
 sudo systemctl start ntpd
 
+# Set timezone, default: UTC
+sudo timedatectl set-timezone ${TZ:-UTC}
+sudo timedatectl
+
 ###########################################################
 # Update system packages
 sudo yum update -y
